@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:print_kiosk_app/core/common/dto/error_response.dart';
 import 'package:print_kiosk_app/core/common/exceptions/kiosk_exception.dart';
 import 'package:print_kiosk_app/core/controllers/printer_controller/dto/print_status_response.dart';
@@ -15,10 +13,10 @@ class ExecutePrintController extends _$ExecutePrintController {
     return const AsyncData(null);
   }
 
-  Future<void> call(File file, int numberOfCopies) async {
+  Future<void> call(List<int> file, int numberOfCopies) async {
     state = const AsyncLoading();
 
-    final response = await ref.read(printerServiceProvider).executePrint(file.path, numberOfCopies);
+    final response = await ref.read(printerServiceProvider).executePrint(file, numberOfCopies);
 
     if (!response.isSuccessful) {
       state = AsyncError(

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
@@ -30,14 +28,15 @@ class PrintHeader extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedFile = useState<File?>(null);
+    final selectedFileName = useState<String?>(null);
+    final selectedFileBytes = useState<List<int>?>(null);
     final numberOfCopies = useState<int>(1);
     final canPrint = useState<bool>(false);
 
     useEffect(() {
-      canPrint.value = selectedFile.value != null;
+      canPrint.value = selectedFileBytes.value != null;
       return null;
-    }, [selectedFile.value]);
+    }, [selectedFileBytes.value]);
 
     return Drawer(
       child: ListView(
@@ -46,7 +45,7 @@ class PrintHeader extends HookWidget {
           const DrawerHeader(child: Text(appTitle)),
           ListTile(
             title: const Text('Select a file to print'),
-            subtitle: Text(selectedFile.value?.path ?? ''),
+            subtitle: Text(selectedFileName.value ?? ''),
             trailing: const Icon(Icons.search),
             onTap: () async {
               FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -57,8 +56,8 @@ class PrintHeader extends HookWidget {
               );
 
               if (result != null) {
-                File file = File(result.files.first.path!);
-                selectedFile.value = file;
+                selectedFileName.value = result.files.first.name;
+                selectedFileBytes.value = result.files.first.bytes;
               }
             },
           ),
@@ -101,7 +100,7 @@ class PrintHeader extends HookWidget {
                           ref
                               .read(executePrintControllerProvider.notifier)
                               .call(
-                                selectedFile.value!,
+                                selectedFileBytes.value!,
                                 numberOfCopies.value,
                               )
                               .then(
