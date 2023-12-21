@@ -13,10 +13,11 @@ class ExecutePrintController extends _$ExecutePrintController {
     return const AsyncData(null);
   }
 
-  Future<void> call(List<int> file, int numberOfCopies) async {
+  Future<void> call(List<int> file, String filename, int numberOfCopies) async {
     state = const AsyncLoading();
 
-    final response = await ref.read(printerServiceProvider).executePrint(file, numberOfCopies);
+    final response =
+        await ref.read(printerServiceProvider).executePrint(file, filename, numberOfCopies);
 
     if (!response.isSuccessful) {
       state = AsyncError(

@@ -7,7 +7,7 @@ part of 'printer_controller.dart';
 // **************************************************************************
 
 String _$executePrintControllerHash() =>
-    r'0daf45b01e97b9974cdcb6a163f76c6864269c35';
+    r'01d33a67063f4bf6f0c3499a9f013b9ac5836d48';
 
 /// See also [ExecutePrintController].
 @ProviderFor(ExecutePrintController)

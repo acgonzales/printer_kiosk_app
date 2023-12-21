@@ -30,11 +30,13 @@ final class _$PrinterService extends PrinterService {
   @override
   Future<Response<dynamic>> executePrint(
     List<int> file,
+    String filename,
     int numberOfCopies,
   ) {
     final Uri $url = Uri.parse('/api/printer');
     final Map<String, dynamic> $params = <String, dynamic>{
-      'n_copies': numberOfCopies
+      'filename': filename,
+      'n_copies': numberOfCopies,
     };
     final List<PartValue> $parts = <PartValue>[
       PartValueFile<List<int>>(

@@ -101,6 +101,7 @@ class PrintHeader extends HookWidget {
                               .read(executePrintControllerProvider.notifier)
                               .call(
                                 selectedFileBytes.value!,
+                                selectedFileName.value!,
                                 numberOfCopies.value,
                               )
                               .then(

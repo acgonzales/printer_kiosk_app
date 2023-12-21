@@ -6,7 +6,7 @@ part 'providers.g.dart';
 
 @riverpod
 ChopperClient chopperClient(ChopperClientRef ref) => ChopperClient(
-      baseUrl: Uri.http('127.0.0.1:8000'),
+      baseUrl: Uri.http('localhost:8000'),
       converter: const JsonConverter(),
       errorConverter: const JsonConverter(),
       services: [

@@ -16,6 +16,7 @@ abstract class PrinterService extends ChopperService {
   @Multipart()
   Future<Response> executePrint(
     @PartFile('file') List<int> file,
+    @Query('filename') String filename,
     @Query('n_copies') int numberOfCopies,
   );
 }

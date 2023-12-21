@@ -6,7 +6,7 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$chopperClientHash() => r'5d298adc3c84817dbedeff4956b2532645302be4';
+String _$chopperClientHash() => r'3d1a86782e1ea8c580d10086b72015909c374065';
 
 /// See also [chopperClient].
 @ProviderFor(chopperClient)
